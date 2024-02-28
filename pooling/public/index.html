@@ -1,0 +1,29 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long Polling Example</title>
+</head>
+<body>
+  <h1>Long Polling Example</h1>
+  <div id="result"></div>
+
+  <script>
+    // 使用JavaScript發起長輪詢請求
+    function pollData() {
+      fetch('/poll')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('result').innerText = data.data;
+          pollData(); // 繼續下一次輪詢
+        });
+    }
+
+    // 啟動長輪詢
+    pollData();
+  </script>
+</body>
+</html>
