@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Example</title>
+</head>
+<body>
+  <script>
+    const socket = new WebSocket('ws://localhost:8081');
+
+    // 連接建立後執行的動作
+    socket.addEventListener('open', (event) => {
+      console.log('已連線到伺服器！');
+      
+      // 傳送訊息給伺服器
+      socket.send('瀏覽器端連線成功！');
+    });
+
+    // 收到伺服器訊息時執行的動作
+    socket.addEventListener('message', (event) => {
+      console.log(`伺服器回傳訊息：${event.data}`);
+    });
+
+    // 連線關閉時執行的動作
+    socket.addEventListener('close', (event) => {
+      console.log('與伺服器斷開連線！');
+    });
+  </script>
+</body>
+</html>
